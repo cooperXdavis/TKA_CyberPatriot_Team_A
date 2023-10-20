@@ -1,0 +1,73 @@
+#! /bin/bash
+
+#The text below is for determining root user
+	echo "Please run with sudo or you will be brutally mauled by and angry todler. This is not a threat, this is a promise!"
+
+		if [ "$UID" -ne 0 ]
+
+			then 
+				echo  "Game over. The todler won! Try running as root next time." 
+				exit
+
+		fi
+
+	echo "Congrats, you weren't brutally mauled by a todler"
+
+#_____________________________________________________________________________________________________________________________________________________________________________
+
+#The text below is for activating UFW
+
+	echo "Now we gonna activate and configure UFW"
+		ufw enable
+
+		ufw default deny incoming
+
+			ufw allow http
+			ufw allow ssh
+
+		ufw default allow outgoing
+
+		ufw status numbered
+
+	echo "Now ufw is configured and enabled on start up"
+
+#_____________________________________________________________________________________________________________________________________________________________________________
+
+#The text below is for updating the system
+
+	echo "Time for da system update!"
+		apt upgrade -y
+		apt update -y
+	echo "Now your system has been upgraded"
+#_____________________________________________________________________________________________________________________________________________________________________________
+
+
+#The text  below is for installing need restart
+
+	echo "The text below is for installing needrestart"
+
+		apt install needrestart -y
+
+#_____________________________________________________________________________________________________________________________________________________________________________
+
+#The text below is for updating the system
+
+	echo "The text below is for updating the system"
+		apt upgrade
+		apt update
+#_____________________________________________________________________________________________________________________________________________________________________________
+
+#The text below helps secure ssh
+
+	echo "This helps secure ssh"
+		apt install ssh-audit
+	echo "Do anything the audit says is not secure"
+#_____________________________________________________________________________________________________________________________________________________________________________
+
+
+#The text below blocks someone from hacking you
+
+	echo "aight, we gonna stop you from gettin hacked"
+		apt install fail2ban
+		cp /etc/fail2ban /jail.conf /etc/fail2ban/jail.local
+		service fail2ban restart
