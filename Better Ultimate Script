@@ -37,7 +37,7 @@
 
 	echo "Time for da system update!"
 		apt upgrade -y
-		apt update -y
+		apt  update -y
 	echo "Now your system has been upgraded"
 #_____________________________________________________________________________________________________________________________________________________________________________
 
