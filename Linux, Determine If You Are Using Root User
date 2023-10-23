@@ -1,0 +1,16 @@
+#This is a script to check if you are root user!
+
+#! /bin/bash
+
+#The text below is for determining root user
+	echo "Please run with sudo or you will be brutally mauled by and angry toDdler. This is not a threat, this is a promise!"
+
+		if [ "$UID" -ne 0 ]
+
+			then 
+				echo  "Game over. The toddler won! Try running as root next time." 
+				exit
+
+		fi
+
+	echo "Congrats, you weren't brutally mauled by a toddler"
