@@ -1,8 +1,0 @@
-echo "Now we gonna activate and configure UFW"
-
-		ufw enable
-		ufw default deny incoming
-		ufw default allow outgoing
-		ufw status numbered
-
-echo "Now ufw is configured and enabled on start up"
