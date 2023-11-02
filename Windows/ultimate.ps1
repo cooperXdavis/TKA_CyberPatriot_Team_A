@@ -130,7 +130,7 @@ Write-Host " "
 Write-Host "Starting Firewall..."
 
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True
-Set-NetFirewallProfile -DefaultInboundAction Block -DefaultOutboundAction Allow –NotifyOnListen True -AllowUnicastResponseToMulticast True  
+Set-NetFirewallProfile -DefaultInboundAction Block -DefaultOutboundAction Allow -NotifyOnListen True -AllowUnicastResponseToMulticast True  
 
 Write-Host " "
 ########## Prohibited File Search ##########
@@ -197,7 +197,7 @@ ForEach ($si in $ServiceItems) {
 		
 		########################################################################
     		# Find and Fix Bad Keys for each key object
-        ########################################################################
+    		########################################################################
 		
 		#We're looking for keys with spaces in the path and unquoted
 		$examine = $obj.ImagePath
@@ -267,7 +267,7 @@ ForEach ($si in $ServiceItems) {
 			if ($examine.endswith('""')){ $examine = $examine.replace('""','"') }
 			$obj | Add-Member -MemberType NoteProperty -Name FixedKey -Value $examine
 			if ($obj.badkey -eq "Yes"){
-				Write-Progress -Activity "Fixing $($obj.key)" -Status "Working..."
+				#Write-Progress -Activity "Fixing $($obj.key)" -Status "Working..."
 				$regpath = $obj.Fixedkey
 				$obj.status = "Fixed"
 	        		$regkey = $obj.key.replace('HKEY_LOCAL_MACHINE', 'HKLM:')
