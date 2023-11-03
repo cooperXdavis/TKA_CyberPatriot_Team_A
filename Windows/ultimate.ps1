@@ -315,6 +315,6 @@ if ($LASTEXITCODE -eq 0) {
 
 ########## Windows Update ##########
 
-Import-Module PSWindowsUpdate
+Install-Module PSWindowsUpdate
 Write-Host "Starting Windows Update..."
 Install-WindowsUpdate -AcceptAll
