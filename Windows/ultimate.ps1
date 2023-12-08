@@ -75,7 +75,7 @@ Write-Host "Changing passwords..."
 # Loop through each username and change the password
 foreach ($username in $usernames) {
     # Change the password using net user command
-    net user $username CyberPatriot23!! | Out-Null
+    net user $username Cyberpatriot23!! | Out-Null
 
     # Check the success of the password change
     if ($LASTEXITCODE -eq 0) {
@@ -154,6 +154,18 @@ Get-ChildItem C:\ -force -filter "*malicious*" -Recurse -ErrorAction SilentlyCon
 Get-ChildItem C:\ -force -filter "*trojan*" -Recurse -ErrorAction SilentlyContinue | Out-File -append "C:\points\Prohibited Media Files\Files to delete.txt"
 Get-ChildItem C:\ -force -filter "*horse*" -Recurse -ErrorAction SilentlyContinue | Out-File -append "C:\points\Prohibited Media Files\Files to delete.txt"
 Get-ChildItem C:\ -force -filter "*hack*" -Recurse -ErrorAction SilentlyContinue | Out-File -append "C:\points\Prohibited Media Files\Files to delete.txt"
+
+# Lists users files to find potentially malicous files
+New-Item -Path C:\points -name "Users Files" -type File
+Get-ChildItem -Path 'C:\Users\*\Desktop\' -Force -Recurse -Exclude "desktop.ini" | Out-File -Append "C:\points\Users Files"
+Get-ChildItem -Path 'C:\Users\*\Documents\' -Force -Recurse -Exclude "desktop.ini", "My Music", "My Pictures", "My Videos" -ErrorAction SilentlyContinue | Out-File -Append "C:\points\Users Files"
+Get-ChildItem -Path 'C:\Users\*\Downloads\' -Force -Recurse -Exclude "desktop.ini" | Out-File -Append "C:\points\Users Files"
+Get-ChildItem -Path 'C:\Users\*\Music\' -Force -Recurse -Exclude "desktop.ini" | Out-File -Append "C:\points\Users Files"
+Get-ChildItem -Path 'C:\Users\*\Videos\' -Force -Recurse -Exclude "desktop.ini" | Out-File -Append "C:\points\Users Files"
+Get-ChildItem -Path 'C:\Users\*\Pictures\' -Force -Recurse -Exclude "desktop.ini" | Out-File -Append "C:\points\Users Files"
+Get-ChildItem -Path 'C:\Users\*\Contacts\' -Force -Recurse -Exclude "desktop.ini" | Out-File -Append "C:\points\Users Files"
+Get-ChildItem -Path 'C:\Users\*\Saved Games\' -Force -Recurse -Exclude "desktop.ini" | Out-File -Append "C:\points\Users Files"
+
 
 ########## Finding and Fixing Unquoted Service Paths ##########
 #####################################################################################################
@@ -312,9 +324,3 @@ if ($LASTEXITCODE -eq 0) {
     Write-Host "Successfully set machine to logoff after 5 minutes of inactivity
     "
     }
-
-########## Windows Update ##########
-
-Install-Module PSWindowsUpdate
-Write-Host "Starting Windows Update..."
-Install-WindowsUpdate -AcceptAll
